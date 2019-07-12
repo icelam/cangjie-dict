@@ -1,0 +1,10 @@
+{
+  "name": "cangjie-dict",
+  "version": "1.0.0",
+  "description": "Cangjie dictionary written in Node.js, express, mongoDB, moongoose, ReactJS.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ice Lam",
+  "license": "ISC"
+}
