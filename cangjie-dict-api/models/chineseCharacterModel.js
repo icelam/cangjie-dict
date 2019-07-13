@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const chineseCharacterModel = new Schema({
   word: String,
-  code: String,
+  cangjie: String,
   jyutping: [{
     type: String
   }]
