@@ -48,3 +48,8 @@ In the file, specify the startup command by adding `web: node ./bin/www`. (This 
 
 7. **Commit all your code**
 `git push heroku-backend master`
+
+## Routes ##
+1. `/api/v1/all` - List all words
+2. `/api/v1/word/:word` - Search by word
+3. `/api/v1/jyutping/:jyutping` - Search by Jyutping
