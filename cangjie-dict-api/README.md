@@ -15,6 +15,9 @@ Specify `process.env.MONGO_DB_PATH` in order to start the application correctly.
 
 ## Preview on local machine ##
 
+### Node version ###
+* Develop in Node.js 10, supports Node.js >= 7.7.3
+
 ### Install project dependencies ###
 * `npm install`
 
