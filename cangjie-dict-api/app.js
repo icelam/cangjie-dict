@@ -11,6 +11,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// public assets - favicon, robot.txt, etc.
+app.use(express.static('public'));
+
 // routes
 app.use(router);
 
