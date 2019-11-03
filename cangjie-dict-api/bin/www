@@ -79,7 +79,7 @@ server.on('listening', () => {
 });
 
 // Mongoose connection
-mongoose.connect(process.env.MONGO_DB_PATH, { useNewUrlParser: true }).then(async () => {
+mongoose.connect(process.env.MONGO_DB_PATH, { useNewUrlParser: true, useUnifiedTopology: true }).then(async () => {
   // Listen on provided port, on all network interfaces.
   server.listen(APP_PORT);
 }).catch((e) => {
