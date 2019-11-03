@@ -32,7 +32,7 @@ Specify `process.env.MONGO_DB_PATH` in order to start the application correctly.
 `brew tap heroku/brew && brew install heroku` and `heroku login`
 
 2. **Create Heroku App**
-`cd cangjie-dict-api && heroku create cangjie-dict-api --remote heroku-backend`
+`cd cangjie-dict-api && heroku create cangjie-dict-api --remote heroku`
 
 3. **Create a `Procfile` file for `cangjie-dict-api`**
 In the file, specify the startup command by adding `web: node ./bin/www`. (This file is already include in the codebase, you may skip this step)
@@ -47,7 +47,7 @@ In the file, specify the startup command by adding `web: node ./bin/www`. (This 
 `heroku config:set APP_BASE=cangjie-dict-api --app cangjie-dict-api`
 
 7. **Commit all your code**
-`git push heroku-backend master`
+`git push heroku master`
 
 ## Routes ##
 1. `/api/v1/all` - List all words
