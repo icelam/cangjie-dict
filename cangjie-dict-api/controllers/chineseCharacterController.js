@@ -5,6 +5,7 @@ const chineseCharacterController = {
     chineseCharacterModel.find((err, chineseCharacters) => {
       if (err) {
         return res.status(500).json({
+          status: 500,
           message: 'Error listing chinese characters'
         });
       }
@@ -19,6 +20,7 @@ const chineseCharacterController = {
     // Check code format to prevent attacks
     if (decodedCharacter.length !== 1) {
       return res.status(500).json({
+        status: 500,
         message: 'Incorrect parameters'
       });
     }
@@ -26,12 +28,14 @@ const chineseCharacterController = {
     chineseCharacterModel.findOne({ word: decodedCharacter }, (err, chineseCharacter) => {
       if (err) {
         return res.status(500).json({
+          status: 500,
           message: 'Error finding specific chinese character'
         });
       }
 
       if (!chineseCharacter) {
         return res.status(404).json({
+          status: 404,
           message: 'No such chinese character'
         });
       }
@@ -45,6 +49,7 @@ const chineseCharacterController = {
     const validJyutping = new RegExp(/^[a-zA-Z]+$/).test(jyutping);
     if (!validJyutping) {
       return res.status(500).json({
+        status: 500,
         message: 'Incorrect parameters'
       });
     }
@@ -52,12 +57,14 @@ const chineseCharacterController = {
     chineseCharacterModel.find({ jyutping }, (err, chineseCharacter) => {
       if (err) {
         return res.status(500).json({
+          status: 500,
           message: 'Error finding specific chinese character'
         });
       }
 
       if (!chineseCharacter) {
         return res.status(404).json({
+          status: 404,
           message: 'No such chinese character'
         });
       }
