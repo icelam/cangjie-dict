@@ -22,10 +22,10 @@ Specify `process.env.MONGO_DB_PATH` in order to start the application correctly.
 * `npm install`
 
 ### Start development server ###
-* `npm run dev`
+* `npm run dev` - Serve at [http://localhost:3100](http://localhost:3100)
 
 ### Start server ###
-* `npm start`
+* `npm start` - Serve at [http://localhost:3100](http://localhost:3100)
 
 ## Deploy application to Heroku ##
 1. **Install and Login [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)**
@@ -53,6 +53,9 @@ In the file, specify the startup command by adding `web: node ./bin/www`. (This 
 1. `/api/v1/all` - List all words
 2. `/api/v1/word/:word` - Search by word
 3. `/api/v1/jyutping/:jyutping` - Search by Jyutping
+
+## Swagger ##
+* Visit [http://localhost:3100/api-docs/](http://localhost:3100/api-docs/)
 
 ## Public Assets ##
 * Place all public assets under `.\public` folder
