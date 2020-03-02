@@ -19,8 +19,8 @@ const chineseCharacterController = {
 
     // Check code format to prevent attacks
     if (decodedCharacter.length !== 1) {
-      return res.status(500).json({
-        status: 500,
+      return res.status(400).json({
+        status: 400,
         message: 'Incorrect parameters'
       });
     }
@@ -48,8 +48,8 @@ const chineseCharacterController = {
 
     const validJyutping = new RegExp(/^[a-zA-Z]+$/).test(jyutping);
     if (!validJyutping) {
-      return res.status(500).json({
-        status: 500,
+      return res.status(400).json({
+        status: 400,
         message: 'Incorrect parameters'
       });
     }
