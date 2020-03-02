@@ -1,0 +1,255 @@
+openapi: 3.0.1
+info:
+  title: Cangjie Dict API
+  description: Cangjie code of a Chinese character, which can be search by word or jyutping.
+  version: 1.0.0
+servers:
+- url: /api/v1
+paths:
+  /all:
+    get:
+      description: List all words
+      responses:
+        200:
+          description: Successful response with a list of word and its cangjie code
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListingSuccess'
+        500:
+          description: Error when listing words and its cangjie code
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListingError'
+  /word/{character}:
+    get:
+      description: Search by single word
+      parameters:
+      - name: character
+        in: path
+        description: Chinese character of the word to get
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successful response with cangjie code of a chinese character
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WordSearchSuccess'
+        400:
+          description: Incorrect parameter provided (word.length !== 1)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchError400'
+        404:
+          description: No result for this chinese character
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchError404'
+        500:
+          description: Error encountered when searching chinese character
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchError500'
+  /jyutping/{code}:
+    get:
+      description: Search by single word
+      parameters:
+      - name: code
+        in: path
+        description: Jyutping of the word to get
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successful response with cangjie code of a chinese character
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JyutpingSearchSuccess'
+        400:
+          description: Incorrect parameter provided (contains non A-Z a-z characters)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchError400'
+        404:
+          description: No result for this jyutping
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchError404'
+        500:
+          description: Error encountered when searching chinese character
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchError500'
+components:
+  schemas:
+    ListingSuccess:
+      title: List all words - Success
+      type: array
+      items:
+        type: object
+        properties:
+          jyutping:
+            type: array
+            items:
+              type: array
+              items:
+                type: string
+          _id:
+            type: string
+          word:
+            type: string
+          cangjie:
+            type: string
+      example:
+        - jyutping:
+          - ming
+          id: 5d2a0a836f111184ebb8d09f
+          word: 暝
+          cangjie: abac
+        - jyutping:
+          - dam
+          - dap
+          id: 5d2a0a846f111184ebb8ff7c
+          word: 揼
+          cangjie: qmre
+    ListingError:
+      title: List all words - Error
+      type: object
+      properties:
+        status:
+          type: number
+          format: integer
+          enum:
+            - 500
+        message:
+          type: string
+          enum:
+            - Error listing chinese characters
+    WordSearchSuccess:
+      title: Word Search - Success
+      type: object
+      properties:
+        jyutping:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+        _id:
+          type: string
+        word:
+          type: string
+        cangjie:
+          type: string
+      example:
+        jyutping:
+          - dam
+          - dap
+        _id: 5d2a0a846f111184ebb8ff7c
+        word: 揼
+        cangjie: qmre
+    JyutpingSearchSuccess:
+      title: List all words - Success
+      type: array
+      items:
+        type: object
+        properties:
+          jyutping:
+            type: array
+            items:
+              type: array
+              items:
+                type: string
+          _id:
+            type: string
+          word:
+            type: string
+          cangjie:
+            type: string
+      example:
+        - jyutping:
+          - dap
+          id: 5d2a0a846f111184ebb8f49d
+          word: 䂿
+          cangjie: mrea
+        - jyutping:
+          - dam
+          - dap
+          id: 5d2a0a846f111184ebb8ff7c
+          word: 揼
+          cangjie: qmre
+    SearchError400:
+      title: Word Search - Incorrect parameters
+      type: object
+      properties:
+        status:
+          type: number
+          format: integer
+          enum:
+            - 400
+        message:
+          type: string
+          enum:
+            - Incorrect parameters
+    SearchError404:
+      title: Word Search - No such chinese character
+      type: object
+      properties:
+        status:
+          type: number
+          format: integer
+          enum:
+            - 404
+        message:
+          type: string
+          enum:
+            - No such chinese character
+    SearchError500:
+      title: Word Search - Unknown error
+      type: object
+      properties:
+        status:
+          type: number
+          format: integer
+          enum:
+            - 500
+        message:
+          type: string
+          enum:
+            - Error finding specific chinese character
+    GenericError:
+      title: Generic Error
+      type: object
+      properties:
+        status:
+          type: number
+          format: integer
+          example: 500
+        message:
+          type: string
+          example: Internal Server Error
+    NotFound:
+      title: Not Found
+      type: object
+      properties:
+        status:
+          type: number
+          format: integer
+          enum:
+            - 404
+        message:
+          type: string
+          enum:
+            - Not Found

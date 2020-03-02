@@ -1,4 +1,4 @@
-const chineseCharacterModel = require('../models/chineseCharacterModel.js');
+const chineseCharacterModel = require('../models/chineseCharacterModel');
 
 const chineseCharacterController = {
   list: (req, res) => {
