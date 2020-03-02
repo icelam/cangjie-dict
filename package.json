@@ -2,9 +2,22 @@
   "name": "cangjie-dict",
   "version": "1.0.0",
   "description": "Cangjie dictionary written in Node.js, express, mongoDB, moongoose, ReactJS.",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Ice Lam",
-  "license": "ISC"
+  "license": "ISC",
+  "scripts": {
+    "first-release": "standard-version --commit-all --tag-prefix v --first-release --infile ./CHANGELOG.md",
+    "release": "standard-version --commit-all --tag-prefix v --infile ./CHANGELOG.md"
+  },
+  "standard-version": {
+    "scripts": {
+      "postchangelog": "replace 'bitbucket.org' 'github.com' ./CHANGELOG.md"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "husky": "^3.1.0",
+    "replace": "^1.1.5",
+    "standard-version": "^7.1.0"
+  }
 }
